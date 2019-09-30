@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" />
+    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.0.76" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SiteMonitor.BusinessLogic\SiteMonitor.BusinessLogic.csproj" />
+    <ProjectReference Include="..\SiteMonitor.Data\SiteMonitor.Data.csproj" />
+  </ItemGroup>
+
+</Project>

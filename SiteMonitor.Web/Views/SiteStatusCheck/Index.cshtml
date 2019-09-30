@@ -1,0 +1,20 @@
+﻿@model IEnumerable<SiteStatusCheckViewModel>
+
+<div>
+    <a asp-action="Index" asp-controller="SiteConfigurationAdministration">Manage</a>
+</div>
+<table>
+    <tr>
+        <th>Site URL</th>
+        <th>Status</th>
+        <th>Last Checked (UTC)</th>
+    </tr>
+    @foreach (var siteStatusCheckResult in Model)
+    {
+        <tr>
+            <td>@siteStatusCheckResult.SiteUrl</td>
+            <td>@(siteStatusCheckResult.IsAvailable ? "Available" : "Unavailable")</td>
+            <td>@siteStatusCheckResult.LastCheckedDate.ToString("MM/dd/yyyy HH:mm:ss")</td>
+        </tr>
+    }
+</table>

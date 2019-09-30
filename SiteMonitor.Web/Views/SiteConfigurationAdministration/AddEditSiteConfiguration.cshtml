@@ -1,0 +1,32 @@
+﻿@model AddEditSiteConfigurationViewModel
+
+@{
+    var isForEditing = Model.SiteConfiguration.SiteConfigurationId.HasValue;
+}
+
+<div asp-validation-summary="All"></div>
+<form asp-action="SaveSiteConfiguration" method="post" id="editSiteConfigurationForm">
+    @if (isForEditing)
+    {
+        <input asp-for="SiteConfiguration.SiteConfigurationId" type="hidden" value="@Model.SiteConfiguration.SiteConfigurationId.Value" />
+    }
+    <div>
+        <label asp-for="SiteConfiguration.SiteUrl">Site URL: </label>
+        <input asp-for="SiteConfiguration.SiteUrl" />
+    </div>
+    <div>
+        <label asp-for="SiteConfiguration.SiteStatusCheckIntervalTypeId">Check Interval Type: </label>
+        <select asp-for="SiteConfiguration.SiteStatusCheckIntervalTypeId"
+                asp-items="@(new SelectList(Model.SiteStatusCheckIntervalTypes, "SiteStatusCheckIntervalTypeId", "SiteStatusCheckIntervalTypeName"))">
+            <option disabled selected>Please select one</option>
+        </select>
+    </div>
+    <div>
+        <label asp-for="SiteConfiguration.SiteStatusCheckInterval">Check Interval: </label>
+        <input asp-for="SiteConfiguration.SiteStatusCheckInterval" />
+    </div>
+    <div>
+        <a href="javascript:{}" onclick="document.getElementById('editSiteConfigurationForm').submit(); return false;">Save</a>
+        <a asp-action="Index">Cancel</a>
+    </div>
+</form>

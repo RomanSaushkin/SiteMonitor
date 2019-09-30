@@ -1,0 +1,31 @@
+﻿@model IEnumerable<SiteConfigurationViewModel>
+
+<div>
+    <a asp-action="Index" asp-controller="SiteStatusCheck">Monitor</a>
+</div>
+<table>
+    <tr>
+        <th>Site URL</th>
+        <th>Check Interval</th>
+        <th>Last Updated (UTC)</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var siteConfiguration in Model)
+    {
+        <tr>
+            <td>@siteConfiguration.SiteUrl</td>
+            <td>@($"{siteConfiguration.SiteStatusCheckInterval} {siteConfiguration.SiteStatusCheckIntervalTypeName}")</td>
+            <td>@siteConfiguration.LastUpdated.ToString("MM/dd/yyyy HH:mm:ss")</td>
+            <td>
+                <form asp-action="DeleteSiteConfiguration" method="post" id="deleteSiteConfigurationForm_@siteConfiguration.Id">
+                    <input type="hidden" name="SiteConfigurationId" value="@siteConfiguration.Id"/>
+                    <a asp-action="EditSiteConfiguration" asp-route-siteConfigurationId="@siteConfiguration.Id">Edit</a>
+                    <a href="javascript:{}" onclick="document.getElementById('deleteSiteConfigurationForm_@siteConfiguration.Id').submit(); return false;">Delete</a>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+<div>
+    <a asp-action="AddSiteConfiguration">Add Site</a>
+</div>
